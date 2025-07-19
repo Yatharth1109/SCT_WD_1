@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatharth Kumar Mishra - Aspiring Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #E0E0E0;
+            background: linear-gradient(135deg, #1A1E4A 0%, #C5D9F4 100%);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #7A89DE;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #454E9B;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #C5D9F4;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            position: relative;
+            padding-bottom: 10px;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #7A89DE;
+            border-radius: 2px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: #2A2F63;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(32, 35, 78, 0.95);
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #C5D9F4;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            position: relative;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #C5D9F4;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #C5D9F4;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 2em;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, #2A2F63 0%, #1A1E4A 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* Account for fixed header */
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease-out;
+            max-width: 900px;
+            padding: 0 20px; /* Add padding for smaller screens */
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            color: #C5D9F4;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-content .tagline {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            color: #7A89DE;
+        }
+
+        /* About Section */
+        #about {
+            background-color: #1A1E4A;
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+            justify-content: center; /* Center content on smaller screens */
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #D0D0D0;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            background-color: #454E9B;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            color: #C5D9F4;
+            overflow: hidden;
+            border: 5px solid #7A89DE;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            background-size: cover;
+            background-position: center;
+        }
+
+        
+        #skills {
+            background-color: #2A2F63;
+            padding: 80px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-category {
+            background-color: #454E9B;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            /* Existing transition for transform, adding for background-color */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+        .skill-category:nth-child(4) { animation-delay: 0.4s; }
+        .skill-category:nth-child(5) { animation-delay: 0.5s; }
+        .skill-category:nth-child(6) { animation-delay: 0.6s; }
+
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            background-color: #5A64AA; /* Slightly lighter on hover */
+        }
+
+        .skill-category h3 {
+            color: #C5D9F4;
+            margin-top: 0;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .skill-category h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #7A89DE;
+            border-radius: 1.5px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-category ul li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+            color: #E0E0E0;
+            display: flex;
+            align-items: center;
+        }
+        .skill-category ul li i {
+            margin-right: 10px;
+            color: #C5D9F4;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: #1A1E4A;
+            padding: 80px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background-color: #2A2F63;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            /* Existing transition for transform, adding for background-color */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background-color: #3B4075; /* Slightly lighter on hover */
+        }
+
+        .project-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-content h3 {
+            color: #C5D9F4;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            font-size: 1em;
+            color: #D0D0D0;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-actions .button {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        /* Certifications Section (Renamed to Learning) */
+        #certifications {
+            background-color: #2A2F63;
+            padding: 80px 0;
+        }
+
+        .cert-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cert-list li {
+            background-color: #454E9B;
+            padding: 20px 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-size: 1.2em;
+            color: #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Existing transition for transform, adding for background-color */
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        /* Adjusted animation delays for new items */
+        .cert-list li:nth-child(1) { animation-delay: 0.1s; }
+        .cert-list li:nth-child(2) { animation-delay: 0.2s; }
+        .cert-list li:nth-child(3) { animation-delay: 0.3s; }
+        .cert-list li:nth-child(4) { animation-delay: 0.4s; }
+        .cert-list li:nth-child(5) { animation-delay: 0.5s; }
+        .cert-list li:nth-child(6) { animation-delay: 0.6s; }
+        .cert-list li:nth-child(7) { animation-delay: 0.7s; }
+
+
+        .cert-list li:hover {
+            transform: scale(1.02);
+            background-color: #7A89DE; /* Changes background color on hover */
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4); /* Slightly larger shadow */
+        }
+
+        .cert-list li i {
+            font-size: 1.5em;
+            color: #C5D9F4;
+        }
+
+
+        /* Contact Section */
+        #contact {
+            background-color: #1A1E4A;
+            padding: 80px 0;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #2A2F63;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .contact-info h3, .contact-form h3 {
+            color: #C5D9F4;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info ul li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #E0E0E0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-info ul li a {
+            color: #C5D9F4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info ul li a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .contact-info ul li i {
+            font-size: 1.4em;
+            color: #7A89DE;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 1px solid #7A89DE;
+            border-radius: 5px;
+            background-color: #1A1E4A;
+            color: #E0E0E0;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #C5D9F4;
+            box-shadow: 0 0 8px rgba(197, 217, 244, 0.5);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .button {
+            width: auto;
+            align-self: flex-start;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2A2F63;
+            color: #C5D9F4;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9em;
+            border-top: 1px solid #454E9B;
+        }
+
+        .footer .social-links a {
+            color: white;
+            font-size: 1.5em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-links a:hover {
+            color: #C5D9F4;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                width: 100%;
+                background-color: #2A2F63;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active { /* Show when active class is added by JS */
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+
+            .hero-content p {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2.2em;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                order: -1; /* Move image above text on mobile */
+            }
+
+            .skills-grid, .projects-grid, .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info, .contact-form {
+                margin-bottom: 20px;
+            }
+
+            .cert-list li {
+                width: 95%;
+                font-size: 1em;
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+            }
+            .button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="logo">Yatharth</a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="scroll-link active">Home</a></li>
+                    <li><a href="#about" class="scroll-link">About</a></li>
+                    <li><a href="#skills" class="scroll-link">Skills</a></li>
+                    <li><a href="#projects" class="scroll-link">Projects</a></li>
+                    <li><a href="#contact" class="scroll-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>YATHARTH KUMAR MISHRA</h1>
+                <p class="tagline">Aspiring Software Developer & UI/UX Enthusiast, fascinated by the art of digital creation.</p>
+                <p>Second-year engineering student passionate about crafting scalable solutions and engaging user experiences. My journey from C/C++ to modern web technologies is fueled by a desire to innovate and contribute to leading MNCs like Microsoft, Amazon, IBM, and Deloitte.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="button">View My Work</a>
+                    <a href="#contact" class="button">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2 class="section-title text-center">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Yatharth, a passionate and dedicated <strong>Second-year engineering student</strong> with a keen interest in <strong>Software Development</strong> and <strong>UI/UX Design</strong>. My journey into technology began with a strong foundation in <strong>C/C++</strong>, which quickly evolved into a fascination with creating interactive and visually appealing web experiences.</p>
+                    <p>I thrive on turning complex problems into elegant, user-friendly solutions. I'm proficient in <strong>HTML, CSS, and JavaScript</strong>, and always eager to learn new technologies and expand my skillset. I believe in the power of well-crafted code and thoughtful design to make a tangible impact.</p>
+                    <p>Beyond coding, I'm an enthusiastic learner, constantly exploring new concepts and striving for continuous improvement. I'm excited about the prospect of contributing to innovative projects and growing within a dynamic tech environment, especially aiming to work with leading MNCs like Microsoft, Amazon, IBM, and Deloitte.</p>
+                </div>
+                <div class="about-image">
+                    <div class="profile-pic">
+                        <img src="20250121_084859.jpg" height="250" width="250" alt="Profile Picture">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="container">
+            <h2 class="section-title text-center">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> C++ (Proficient)</li>
+                        <li><i class="fas fa-check-circle"></i> C (Proficient)</li>
+                        <li><i class="fas fa-check-circle"></i> JavaScript (Intermediate)</li>
+                        <li><i class="fas fa-check-circle"></i> Python (Basic)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-desktop"></i> Frontend Development</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> HTML5 (Advanced)</li>
+                        <li><i class="fas fa-check-circle"></i> CSS3 (Advanced)</li>
+                        <li><i class="fas fa-check-circle"></i> JavaScript (DOM Manipulation)</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive Design (Media Queries, Flexbox, Grid)</li>
+                        <li><i class="fas fa-check-circle"></i> Tailwind CSS (Basic Integration)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> MySQL (Basic)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Git & GitHub (Version Control)</li>
+                        <li><i class="fas fa-check-circle"></i> VS Code</li>
+                        <li><i class="fas fa-check-circle"></i> Chrome DevTools</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-puzzle-piece"></i> Concepts & Principles</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Data Structures & Algorithms (DSA)</li>
+                        <li><i class="fas fa-check-circle"></i> Object-Oriented Programming (OOP)</li>
+                        <li><i class="fas fa-check-circle"></i> Problem Solving</li>
+                        <li><i class="fas fa-check-circle"></i> UI/UX Principles</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> Soft Skills</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Adaptability</li>
+                        <li><i class="fas fa-check-circle"></i> Teamwork</li>
+                        <li><i class="fas fa-check-circle"></i> Communication</li>
+                        <li><i class="fas fa-check-circle"></i> Problem-Solving</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="container">
+            <h2 class="section-title text-center">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>MediBuddy - Healthcare Platform</h3>
+                        <p>A web-based platform designed to connect patients with doctors, manage appointments, and access health records. Developed using modern frontend technologies.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>18th Call - Interactive Thriller Game</h3>
+                        <p>An engaging web-based interactive fiction game with branching storylines and dynamic elements, built primarily with HTML, CSS, and JavaScript.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Sakhaa AI - AI Chatbot Prototype</h3>
+                        <p>A prototype for an AI-powered chatbot designed to assist users with common queries and provide personalized responses. Focus on conversational UI.</p>
+                    </div>
+                </div>
+                 <div class="project-card">
+                    <div class="project-content">
+                        <h3>Simple Bank System (C++)</h3>
+                        <p>A console-based bank management system developed in C++, demonstrating OOP principles, file handling, and basic transaction functionalities.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Cafe Management System (C++)</h3>
+                        <p>A command-line application in C++ for managing cafe orders, inventory, and billing. Showcases data structures and algorithms in a practical context.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2 class="section-title text-center">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> Email: <a href="mailto:yatharthm5568@gmail.com">yatharthm5568@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i> Phone: <a href="tel:+919461741846">+91 94617 41846</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Location: Kota, Rajasthan, India</li>
+                        <li><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/yatharth-mishra-380a67317" target="_blank">linkedin.com/in/yatharth-mishra-380a67317</a></li>
+                        <li><i class="fab fa-github"></i> GitHub: <a href="https://github.com/Yatharth1109" target="_blank">github.com/Yatharth1109</a></li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <form action="YOUR_FORM_SUBMISSION_URL" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yatharth Kumar Mishra. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/yatharth-mishra-380a67317" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Yatharth1109" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:yatharthm5568@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('navbar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const scrollLinks = document.querySelectorAll('.scroll-link');
+
+            // --- Header Scroll Effect ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Active Navigation Link Highlighting & Smooth Scroll ---
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.nav-links li a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - navbar.offsetHeight - 100; // Adjusted for fixed header + buffer
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLi.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            scrollLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - navbar.offsetHeight + 1; // Adjust for fixed header
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
